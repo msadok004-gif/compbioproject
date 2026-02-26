@@ -1,7 +1,8 @@
 # COMP 383 Python Pipeline Project
 
-
 Author: Manel Sadok
+
+
 
 ## Project Overview
 
@@ -32,6 +33,7 @@ All reference genomes and BLAST database sequences are obtained from:
 - Betaherpesvirinae genomes downloaded using the NCBI datasets CLI
 
 Reference genome accession used:
+
 GCF_000845245.1 (HCMV)
 
 
@@ -65,7 +67,8 @@ The following software must be installed and available in your PATH:
 - bash
 
 
-## Installation (Recommended to use Conda because it was the easiest to implement)
+
+## Installation (Recommended: Conda)
 
 Create and activate a conda environment with required tools:
 
@@ -81,6 +84,7 @@ blastn -version
 datasets version
 
 
+
 ## How to Run
 
 Clone the repository:
@@ -89,7 +93,8 @@ git clone https://github.com/msadok004-gif/compbioproject.git
 cd compbioproject
 
 
-Run Test Mode 
+
+Run Test Mode:
 
 snakemake --cores 4 PipelineReport.txt
 
@@ -101,12 +106,14 @@ Output:
 PipelineReport.txt
 
 
-Run Full Mode (All Input Reads)
+
+Run Full Mode (All Input Reads):
 
 snakemake --cores 4 Sadok_PipelineReport.txt
 
 Output:
 Sadok_PipelineReport.txt
+
 
 
 ## Output Description
@@ -118,6 +125,4 @@ Each report includes:
 - Number of contigs >1000 bp
 - Total base pairs in contigs >1000 bp
 - Top 5 BLAST hits in tabular format
-
-
 
