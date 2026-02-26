@@ -1,0 +1,18 @@
+samples:
+  - SRR5660030
+  - SRR5660033
+  - SRR5660044
+  - SRR5660045
+
+# HCMV reference accession (required)
+hcmv_accession: "GCF_000845245.1"
+
+# pipeline parameters
+threads: 2
+spades_k: 99
+
+# directories
+raw_dir: "data/raw"
+test_dir: "data/test"
+ref_dir: "data/ref"
+results_dir: "results"
