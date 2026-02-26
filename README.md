@@ -127,4 +127,3 @@ Each report includes:
 
 After cloning this repository and installing dependencies, the entire workflow (Steps 2–5 of the project instructions) can be executed with a **single Snakemake command** as shown above.
 
-No file movement or path editing is required.
