@@ -1,7 +1,6 @@
 # COMP 383 Python Pipeline Project  
 **Author:** Manel Sadok  
 
----
 
 ## Project Overview
 
@@ -21,7 +20,6 @@ For each sample, the pipeline performs:
 
 All steps are automated and reproducible through Snakemake.
 
----
 
 ## Data Source (NCBI)
 
@@ -37,7 +35,6 @@ Reference genome accession used:
 GCF_000845245.1
 ```
 
----
 
 ## Dependencies
 
@@ -53,7 +50,6 @@ The following software must be installed and available in your `PATH`:
 - awk  
 - bash  
 
----
 
 ## Installation (Recommended: Conda)
 
@@ -74,20 +70,18 @@ blastn -version
 datasets version
 ```
 
----
 
 ## How to Run
 
-### 1️⃣ Clone the repository
+###1. Clone the repository
 
 ```bash
 git clone https://github.com/msadok004-gif/compbioproject.git
 cd compbioproject
 ```
 
----
 
-### 2️⃣ Run Test Mode
+### 2. Run Test Mode
 
 ```bash
 snakemake --cores 4 PipelineReport.txt
@@ -104,9 +98,8 @@ This runs the pipeline using the included small FASTQ test files.
 PipelineReport.txt
 ```
 
----
 
-### 3️⃣ Run Full Mode (All Input Reads)
+### 3. Run Full Mode (All Input Reads)
 
 ```bash
 snakemake --cores 4 Sadok_PipelineReport.txt
@@ -118,7 +111,6 @@ snakemake --cores 4 Sadok_PipelineReport.txt
 Sadok_PipelineReport.txt
 ```
 
----
 
 ## Output Description
 
@@ -130,7 +122,6 @@ Each report includes:
 - Total base pairs in contigs >1000 bp  
 - Top 5 BLAST hits in tabular format  
 
----
 
 ## Reproducibility
 
