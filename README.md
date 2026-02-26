@@ -51,7 +51,7 @@ The following software must be installed and available in your `PATH`:
 - bash  
 
 
-## Installation (Recommended: Conda)
+## Installation
 
 Create and activate a conda environment with required tools:
 
