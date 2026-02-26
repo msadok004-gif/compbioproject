@@ -2,7 +2,6 @@
 Author: Manel  Sadok  
 
 
-
 ## Project Overview
 
 This project implements a fully reproducible bioinformatics workflow using **Snakemake** to analyze Human Cytomegalovirus (HCMV) sequencing data.
@@ -17,6 +16,7 @@ The pipeline performs:
 6. Automated report generation  
 
 All steps are automated and reproducible.
+
 
 
 ## Data Source (NCBI)
@@ -42,14 +42,35 @@ The following SRA accessions were analyzed:
 Betaherpesvirinae nucleotide sequences downloaded from NCBI.
 
 
-## Software & Tools Used
+## Installation
 
-- Snakemake  
-- Bowtie2  
-- SPAdes  
-- NCBI BLAST+  
-- awk  
-- Bash  
+It is recommended to use **conda** to install dependencies.
+
+### Option 1 — Using Conda (Recommended)
+
+```
+conda create -n cmv_pipeline snakemake bowtie2 spades blast -c bioconda -c conda-forge
+conda activate cmv_pipeline
+```
+
+### Option 2 — Manual Installation
+
+Ensure the following tools are installed and available in your PATH:
+
+- snakemake  
+- bowtie2  
+- spades.py  
+- makeblastdb  
+- blastn  
+
+You can verify installation with:
+
+```
+snakemake --version
+bowtie2 --version
+spades.py --version
+blastn -version
+```
 
 
 
@@ -71,13 +92,22 @@ results/
 
 ## How to Run
 
-### Test Mode
+After cloning the repository:
+
+```
+git clone https://github.com/msadok004-gif/compbioproject.git
+cd compbioproject
+```
+
+### Run Test Mode
 
 ```
 snakemake --cores 4 PipelineReport.txt
 ```
 
-### Full Mode
+This will run the pipeline using the included sample test data.
+
+### Run Full Mode
 
 ```
 snakemake --cores 4 Sadok_PipelineReport.txt
@@ -86,7 +116,7 @@ snakemake --cores 4 Sadok_PipelineReport.txt
 
 ## Output
 
-Final report file:
+The final report file:
 
 ```
 Sadok_PipelineReport.txt
@@ -103,9 +133,13 @@ This report includes:
 ## Reproducibility
 
 This workflow is fully automated using Snakemake.  
-All results can be regenerated from raw sequencing data using the provided:
+
+All results can be regenerated from raw sequencing data using:
 
 - Snakefile  
 - config.yaml  
+- Included sample test data  
 
 Parallel execution is supported using multiple cores.
+
+No absolute file paths are hardcoded; all paths are relative to the project directory.
