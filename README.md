@@ -1,7 +1,7 @@
 # CMV Genome Assembly & Betaherpesvirinae BLAST Pipeline  
 Author: Manel  Sadok  
 
----
+
 
 ## Project Overview
 
@@ -18,7 +18,6 @@ The pipeline performs:
 
 All steps are automated and reproducible.
 
----
 
 ## Data Source (NCBI)
 
@@ -42,7 +41,6 @@ The following SRA accessions were analyzed:
 ### BLAST Database
 Betaherpesvirinae nucleotide sequences downloaded from NCBI.
 
----
 
 ## Software & Tools Used
 
@@ -53,7 +51,7 @@ Betaherpesvirinae nucleotide sequences downloaded from NCBI.
 - awk  
 - Bash  
 
----
+
 
 ## Directory Structure
 
@@ -70,7 +68,6 @@ results/
     blast/
 ```
 
----
 
 ## How to Run
 
@@ -86,7 +83,6 @@ snakemake --cores 4 PipelineReport.txt
 snakemake --cores 4 Sadok_PipelineReport.txt
 ```
 
----
 
 ## Output
 
@@ -103,7 +99,6 @@ This report includes:
 - Total base pairs in contigs >1000 bp  
 - Top 5 BLAST hits against Betaherpesvirinae  
 
----
 
 ## Reproducibility
 
