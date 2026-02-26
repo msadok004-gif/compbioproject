@@ -1,3 +1,22 @@
+###############################################################################
+# Snakemake workflow: CMV read filtering → assembly → contig stats → BLAST report
+#
+# High-level pipeline overview (per sample):
+#   1) Download reference genomes (HCMV + Betaherpesvirinae) using NCBI datasets
+#   2) Build Bowtie2 index for the HCMV reference
+#   3) Filter paired-end reads by aligning to HCMV and keeping only mapped pairs
+#   4) Count read pairs before/after filtering
+#   5) Assemble filtered reads with SPAdes
+#   6) Compute contig stats for contigs > 1000 bp (count + total bp)
+#   7) Extract the longest contig
+#   8) BLAST the longest contig against Betaherpesvirinae database (top 5 hits)
+#   9) Write summary report(s) for test and full runs
+#
+# Input organization is controlled by config.yaml (paths, samples, parameters).
+# All file paths are defined relative to repository directories from config.yaml.
+###############################################################################
+
+
 import os
 
 configfile: "config.yaml"
@@ -35,7 +54,7 @@ rule all:
 
 
 ########################################
-# Step 2 prereq: HCMV reference + Bowtie2 index
+#  HCMV reference + Bowtie2 index
 ########################################
 
 rule fetch_hcmv_ref:
@@ -76,7 +95,7 @@ rule build_hcmv_bowtie2_index:
 
 
 ########################################
-# Step 5 prereq: Betaherpesvirinae FASTA + BLAST DB
+#  Betaherpesvirinae FASTA + BLAST DB
 ########################################
 
 rule fetch_betaherpes_fna:
@@ -116,7 +135,7 @@ rule make_betaherpes_blastdb:
 
 
 ########################################
-# Step 2: Bowtie2 filter (keep mapped pairs only)
+#  Bowtie2 filter (keep mapped pairs only)
 ########################################
 
 rule bowtie2_filter:
@@ -147,7 +166,7 @@ rule bowtie2_filter:
 
 
 ########################################
-# Step 2: Read-count stats (before/after filtering)
+#  Read-count stats (before/after filtering)
 ########################################
 
 rule read_counts:
@@ -173,7 +192,7 @@ rule read_counts:
 
 
 ########################################
-# Step 3: SPAdes assembly (output contigs.fasta)
+#  SPAdes assembly (output contigs.fasta)
 ########################################
 
 rule spades:
@@ -199,7 +218,7 @@ rule spades:
 
 
 ########################################
-# Step 4: Contig stats (>1000 bp)
+#  Contig stats (>1000 bp)
 ########################################
 
 rule contig_stats_gt1000:
@@ -221,7 +240,7 @@ rule contig_stats_gt1000:
 
 
 ########################################
-# Step 5: Longest contig extraction
+#  Longest contig extraction
 ########################################
 
 rule longest_contig:
@@ -248,7 +267,7 @@ rule longest_contig:
 
 
 ########################################
-# Step 5: BLAST longest contig (top 5 hits)
+#  BLAST longest contig (top 5 hits)
 ########################################
 
 rule blast_longest:
