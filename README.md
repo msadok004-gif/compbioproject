@@ -19,7 +19,7 @@ All steps are automated and reproducible.
 
 
 
-## Data Source (NCBI)
+## Data Source: NCBI
 
 All reference genomes, sequencing data, and BLAST databases were obtained from:
 
@@ -46,14 +46,14 @@ Betaherpesvirinae nucleotide sequences downloaded from NCBI.
 
 It is recommended to use **conda** to install dependencies.
 
-### Option 1 — Using Conda (Recommended)
+### Option 1:  Using Conda
 
 ```
 conda create -n cmv_pipeline snakemake bowtie2 spades blast -c bioconda -c conda-forge
 conda activate cmv_pipeline
 ```
 
-### Option 2 — Manual Installation
+### Option 2:  Manual Installation
 
 Ensure the following tools are installed and available in your PATH:
 
