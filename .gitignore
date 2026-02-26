@@ -1,12 +1,20 @@
-.DS_Store
-__pycache__/
-*.pyc
-
-# outputs
-results/
-logs/
+# Snakemake
 .snakemake/
 
-# large downloads
-ncbi_dataset/
-*.zip
+# Outputs
+results/
+
+# Data (FASTQs, refs, indices, blast db)
+data/
+
+# BLAST db files (if any end up outside data/)
+*.nhr
+*.nin
+*.nsq
+*.ndb
+*.not
+*.ntf
+*.nto
+
+# Mac
+.DS_Store

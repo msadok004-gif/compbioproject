@@ -1,18 +1,23 @@
+last_name: "Sadok"
+
 samples:
   - SRR5660030
   - SRR5660033
   - SRR5660044
   - SRR5660045
 
-# HCMV reference accession (required)
-hcmv_accession: "GCF_000845245.1"
+paths:
+  raw_dir: "data/raw"
+  test_dir: "data/test"
+  ref_dir: "data/ref"
+  results_dir: "results"
 
-# pipeline parameters
-threads: 2
-spades_k: 99
+params:
+  threads: 2
+  spades_k: 99
 
-# directories
-raw_dir: "data/raw"
-test_dir: "data/test"
-ref_dir: "data/ref"
-results_dir: "results"
+reference:
+  hcmv_fna: "data/ref/hcmv.fna"
+  bowtie2_index_prefix: "data/ref/hcmv_index"
+  betaherpes_fna: "data/ref/betaherpesvirinae.fna"
+  blast_db_prefix: "data/ref/betaherpesvirinae_db"
