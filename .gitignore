@@ -5,7 +5,8 @@
 results/
 
 # Data (FASTQs, refs, indices, blast db)
-data/
+# Ignore full dataset only
+data/full/
 
 # BLAST db files (if any end up outside data/)
 *.nhr
