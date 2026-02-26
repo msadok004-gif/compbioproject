@@ -1,145 +1,123 @@
-# CMV Genome Assembly & Betaherpesvirinae BLAST Pipeline  
-Author: Manel  Sadok  
+# COMP 383 Python Pipeline Project
 
+
+Author: Manel Sadok
 
 ## Project Overview
 
-This project implements a fully reproducible bioinformatics workflow using **Snakemake** to analyze Human Cytomegalovirus (HCMV) sequencing data.
+This project implements a fully reproducible bioinformatics workflow using Snakemake to analyze Human Cytomegalovirus (HCMV) sequencing data.
 
-The pipeline performs:
+For each sample, the pipeline performs:
 
-1. Host read filtering using Bowtie2  
-2. De novo genome assembly using SPAdes  
-3. Contig statistics calculation (>1000 bp)  
-4. Longest contig extraction  
-5. BLAST analysis against the Betaherpesvirinae database  
-6. Automated report generation  
+1. Download of the HCMV reference genome from NCBI
+2. Construction of a Bowtie2 index
+3. Alignment of paired-end reads to the HCMV reference
+4. Filtering to retain only mapped read pairs
+5. Genome assembly using SPAdes
+6. Contig statistics calculation for contigs >1000 bp
+7. Extraction of the longest contig
+8. BLAST of the longest contig against a Betaherpesvirinae database
+9. Automated report generation
 
-All steps are automated and reproducible.
-
-
-
-## Data Source: NCBI
-
-All reference genomes, sequencing data, and BLAST databases were obtained from:
-
-**National Center for Biotechnology Information (NCBI)**  
-https://www.ncbi.nlm.nih.gov/
-
-### Reference Genome
-Human Cytomegalovirus reference genome:  
-GCF_000845245.1  
-
-### Sequence Read Archive (SRA) Accessions
-The following SRA accessions were analyzed:
-
-- SRR5660030  
-- SRR5660033  
-- SRR5660044  
-- SRR5660045  
-
-### BLAST Database
-Betaherpesvirinae nucleotide sequences downloaded from NCBI.
+All steps are automated and reproducible through Snakemake.
 
 
-## Installation
 
-It is recommended to use **conda** to install dependencies.
+## Data Source (NCBI)
 
-### Option 1:  Using Conda
+All reference genomes and BLAST database sequences are obtained from:
 
-```
-conda create -n cmv_pipeline snakemake bowtie2 spades blast -c bioconda -c conda-forge
+- NCBI Genome database
+- NCBI SRA
+- Betaherpesvirinae genomes downloaded using the NCBI datasets CLI
+
+Reference genome accession used:
+GCF_000845245.1 (HCMV)
+
+
+
+## Repository Structure
+
+compbioproject/
+│
+├── Snakefile
+├── config.yaml
+├── README.md
+├── data/
+│   └── test/                 Small FASTQ test files (<50MB each)
+├── results/                  Generated automatically during pipeline runs
+└── Sadok_PipelineReport.txt  Full-run report
+
+
+
+## Dependencies
+
+The following software must be installed and available in your PATH:
+
+- snakemake
+- bowtie2
+- spades.py
+- makeblastdb
+- blastn
+- NCBI datasets CLI
+- unzip
+- awk
+- bash
+
+
+## Installation (Recommended to use Conda because it was the easiest to implement)
+
+Create and activate a conda environment with required tools:
+
+conda create -n cmv_pipeline snakemake bowtie2 spades blast ncbi-datasets-cli unzip -c bioconda -c conda-forge
 conda activate cmv_pipeline
-```
 
-### Option 2:  Manual Installation
+Verify installation:
 
-Ensure the following tools are installed and available in your PATH:
-
-- snakemake  
-- bowtie2  
-- spades.py  
-- makeblastdb  
-- blastn  
-
-You can verify installation with:
-
-```
 snakemake --version
 bowtie2 --version
 spades.py --version
 blastn -version
-```
-
-
-
-## Directory Structure
-
-```
-data/
-    ref/
-    test/
-    full/
-
-results/
-    bowtie2_filtered/
-    assembly/
-    stats/
-    blast/
-```
+datasets version
 
 
 ## How to Run
 
-After cloning the repository:
+Clone the repository:
 
-```
 git clone https://github.com/msadok004-gif/compbioproject.git
 cd compbioproject
-```
 
-### Run Test Mode
 
-```
+Run Test Mode 
+
 snakemake --cores 4 PipelineReport.txt
-```
 
-This will run the pipeline using the included sample test data.
+This runs the pipeline using the included small FASTQ test files.
+Each test FASTQ file is under 50MB.
+The test run completes in under 2 minutes.
 
-### Run Full Mode
+Output:
+PipelineReport.txt
 
-```
+
+Run Full Mode (All Input Reads)
+
 snakemake --cores 4 Sadok_PipelineReport.txt
-```
 
-
-## Output
-
-The final report file:
-
-```
+Output:
 Sadok_PipelineReport.txt
-```
-
-This report includes:
-
-- Read counts before and after host filtering  
-- Number of contigs >1000 bp  
-- Total base pairs in contigs >1000 bp  
-- Top 5 BLAST hits against Betaherpesvirinae  
 
 
-## Reproducibility
+## Output Description
 
-This workflow is fully automated using Snakemake.  
+Each report includes:
 
-All results can be regenerated from raw sequencing data using:
+- Read pairs before and after filtering
+- Assembly output directory
+- Number of contigs >1000 bp
+- Total base pairs in contigs >1000 bp
+- Top 5 BLAST hits in tabular format
 
-- Snakefile  
-- config.yaml  
-- Included sample test data  
 
-Parallel execution is supported using multiple cores.
 
-No absolute file paths are hardcoded; all paths are relative to the project directory.
