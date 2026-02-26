@@ -38,18 +38,6 @@ GCF_000845245.1 (HCMV)
 
 
 
-## Repository Structure
-
-compbioproject/
-│
-├── Snakefile
-├── config.yaml
-├── README.md
-├── data/
-│   └── test/                 Small FASTQ test files (<50MB each)
-├── results/                  Generated automatically during pipeline runs
-└── Sadok_PipelineReport.txt  Full-run report
-
 
 
 ## Dependencies
