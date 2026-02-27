@@ -35,6 +35,33 @@ Reference genome accession used:
 GCF_000845245.1
 ```
 
+## Step 1: Retrieving SRA Data
+
+The following SRA accessions were retrieved from NCBI:
+
+- SRR5660030 (Donor 1, 2dpi)
+- SRR5660033 (Donor 1, 6dpi)
+- SRR5660044 (Donor 3, 2dpi)
+- SRR5660045 (Donor 3, 6dpi)
+
+Raw sequencing files were downloaded using `fasterq-dump` from the NCBI SRA Toolkit.
+
+Example command:
+
+```bash
+fasterq-dump SRR5660030 --split-files
+```
+
+This generates paired-end FASTQ files:
+
+```
+SRR5660030_1.fastq
+SRR5660030_2.fastq
+```
+
+The same procedure was used for all four samples.
+
+These FASTQ files were then used as input for the Snakemake workflow (Steps 2–5).
 
 ## Dependencies
 
