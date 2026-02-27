@@ -103,8 +103,8 @@ datasets version
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/msadok004-gif/compbioproject.git
-cd compbioproject
+git clone https://github.com/YOURGITHUBUSERNAME-gif/YOURREPOSITORYNAME
+cd YOURREPOSITORYNAME
 ```
 
 
